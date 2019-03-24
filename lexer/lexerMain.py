@@ -1,5 +1,5 @@
 import re
-from lexerTokens import tokens
+from lexer.lexerTokens import tokens
 
 
 class Token:
@@ -8,7 +8,7 @@ class Token:
         self.name = name
 
 
-def lexer(code, tokens):
+def lexer(code):
     tokenList = []
     begin = 0
     matched = False
@@ -29,7 +29,8 @@ def lexer(code, tokens):
         if (flag != False and breakFlag):
             name = tokens[matched].name
             if((name != "comments") and (name != "spaces")):
-                tokenList.append(Token(code[begin:i], tokens[matched].name))
+                tokenList.append(Token(
+                    code[begin:i], code[begin:i] if tokens[matched].needLexeme else tokens[matched].name))
             begin = i
             i -= 1
             matched = False
@@ -38,7 +39,8 @@ def lexer(code, tokens):
     if (flag != False):
         name = tokens[matched].name
         if((name != "comments") and (name != "spaces")):
-            tokenList.append(Token(code[begin:i], tokens[matched].name))
+            tokenList.append(Token(
+                code[begin:i], code[begin:i] if tokens[matched].needLexeme else tokens[matched].name))
 
     print("{:<24s}{:s}".format("=====================+==", "========="))
     print("{:<24s}{:s}".format("Token", "Value"))
@@ -47,7 +49,3 @@ def lexer(code, tokens):
         print("{:<24s}{:s}".format(i.name, i.value))
 
     return tokenList
-
-
-code = open("code.txt", "r").read()
-lexer(code, tokens)

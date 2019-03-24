@@ -1,6 +1,0 @@
-main ()
-begin
-    int a=b;
-    while(c<d)
-		a = a +b;
-end

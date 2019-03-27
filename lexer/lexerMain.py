@@ -8,6 +8,15 @@ class Token:
         self.name = name
 
 
+def formatString(st, size):
+    temp = st[:]
+    len1 = (size - len(st)) // 2
+    st = " " * len1 + st + " " * len1
+    if(len(st) != size):
+        st += " "
+    return st
+
+
 def lexer(code):
     tokenList = []
     begin = 0
@@ -42,10 +51,11 @@ def lexer(code):
             tokenList.append(Token(
                 code[begin:i], code[begin:i] if tokens[matched].needLexeme else tokens[matched].name))
 
-    print("{:<24s}{:s}".format("=====================+==", "========="))
-    print("{:<24s}{:s}".format("Token", "Value"))
-    print("{:<24s}{:s}".format("=====================+==", "========="))
+    print("=" * 10 + "+" + "=" * 8)
+    print(formatString("Token", 10) + "|" + formatString("Value", 8))
+    print("=" * 10 + "+" + "=" * 8)
+
     for i in tokenList:
-        print("{:<24s}{:s}".format(i.name, i.value))
+        print(formatString(i.name, 10) + "|" + formatString(i.value, 8))
 
     return tokenList

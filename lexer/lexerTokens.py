@@ -12,7 +12,7 @@ tokens = [
 
     Token("^[\(\)\[\]\{\}]\Z", "bracket", True),
     Token("^(\+\+|\-\-)\Z", "unary operator", False),
-    Token("^(\+|\-|\*|/|=)\Z", "operator", True),
+    Token("^(\+|\-|\*|/|=)\Z", "operator", False),
     Token("^(<|>|<=|>=|==|!=)\Z", "relop", False),
 
     Token("^(begin|end|while|for|return)\Z", "keyword", True),

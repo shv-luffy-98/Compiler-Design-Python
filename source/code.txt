@@ -4,6 +4,7 @@ begin
     while(n>1) 
     begin
 		  count = count+ 2;
+          n=n/2;
     end while
     return count;
 end

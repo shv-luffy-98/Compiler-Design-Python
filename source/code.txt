@@ -1,8 +1,9 @@
 int main ()
 begin
-    int a=5;
-    while(c>d) 
+    int count=1;
+    while(n>1) 
     begin
-		  a = a + b;
-    end
+		  count = count+ 2;
+    end while
+    return count;
 end

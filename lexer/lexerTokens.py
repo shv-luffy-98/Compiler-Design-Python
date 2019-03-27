@@ -15,7 +15,7 @@ tokens = [
     Token("^(\+|\-|\*|/|=)\Z", "operator", True),
     Token("^(<|>|<=|>=|==|!=)\Z", "relop", False),
 
-    Token("^(begin|end|while|for)\Z", "keyword", True),
+    Token("^(begin|end|while|for|return)\Z", "keyword", True),
     Token("^(int|float|char)\Z", "type", False),
 
     Token("^;\Z", "semicolon", True),

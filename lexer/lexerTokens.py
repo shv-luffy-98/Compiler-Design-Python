@@ -13,7 +13,7 @@ tokens = [
     Token("^[\(\)\[\]\{\}]\Z", "bracket", True),
     Token("^(\+\+|\-\-)\Z", "unary operator", False),
     Token("^(\+|\-|\*|/|=)\Z", "operator", True),
-    Token("^(<|>|<=|>=|==|!=)\Z", "relational operator", False),
+    Token("^(<|>|<=|>=|==|!=)\Z", "relop", False),
 
     Token("^(begin|end|while|for)\Z", "keyword", True),
     Token("^(int|float|char)\Z", "type", False),

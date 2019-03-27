@@ -1,31 +1,34 @@
-terminals = ['type',
-             'id',
-             '(',
-             ')',
-             'begin',
-             'end',
-             '$',
-             ';',
-             ',',
-             '=',
-             'number',
-             'for',
-             '+',
-             '<=']
-nonTerminals = ['Functions',
-                'Body',
-                'Declarations',
-                'List',
-                'I\'',
-                'AID',
-                'AID\'',
-                'Loops',
-                'Es',
-                'E',
-                'E\'',
-                'Op',
-                'X']
+terminals = [ 'type',
+  'id',
+  '(',
+  ')',
+  'begin',
+  'end',
+  '\'\'',
+  ';',
+  ',',
+  '=',
+  'number',
+  'while',
+  '+',
+  '<=' ]
+nonTerminals = [ 'Start',
+  'Functions',
+  'Body',
+  'Declarations',
+  'List',
+  'I\'',
+  'AID',
+  'AID\'',
+  'Loops',
+  'Es',
+  'E',
+  'E\'',
+  'Op',
+  'X' ]
 parseTable = [
+[["Functions"],"","","","","","sync","","","","","","","" ]
+,
 [["type","id","(",")","begin","Body","end"],"","","","","","sync","","","","","","","" ]
 ,
 [["Declarations","Body"],["Es","Body"],"","","",["''"],"","","","",["Es","Body"],["Loops","Body"],["Es","Body"],"" ]
@@ -40,7 +43,7 @@ parseTable = [
 ,
 ["","","","","","","",["''"],["''"],["=","number"],"","","","" ]
 ,
-["sync","sync","","","","sync","","","","","sync",["for","(","Es","Es","E",")","begin","Body","end"],"sync","" ]
+["sync","sync","","","","sync","","","","","sync",["while","(","E",")","begin","Body","end"],"sync","" ]
 ,
 ["sync",["E",";"],"","","","sync","","","","",["E",";"],"sync",["E",";"],"" ]
 ,

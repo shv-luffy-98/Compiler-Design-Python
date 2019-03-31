@@ -19,12 +19,13 @@ def parse(tokenList):
     stack = ["$", "Functions"]
     print("=" * 16 + "+" + "=" * 16 + "+" + "=" * 48)
     print(formatString("Top of Stack", 16) + "|" +
-          formatString("Input Symbol", 16) + "|" + formatString("Match", 46))
+          formatString("Input Symbol", 16) + "|" + formatString("action", 46))
     print("=" * 16 + "+" + "=" * 16 + "+" + "=" * 48)
-    while (len(stack)):
+    while (len(stack) != 0 and len(tokenList) != 0):
         if (stack[-1] == "$"):
-            printRow("$", "$", "Accepted")
-            break
+            if(tokenList[0].name == "$"):
+                printRow("$", "$", "Accepted")
+                break
 
         if (stack[-1] == "''"):
             stack.pop()
@@ -33,16 +34,25 @@ def parse(tokenList):
             row = ps.nonTerminals.index(stack[-1])
             column = ps.terminals.index(tokenList[0].name)
             production = ps.parseTable[row][column][:]
-            printRow(stack[-1], tokenList[0].name,
-                     stack[-1] + " -> " + " ".join(production))
 
-            stack.pop()
-            production.reverse()
-            stack.extend(production)
+            if (production == "sync"):
+                printRow(stack[-1], tokenList[0].name, "sync")
+                stack.pop()
+            elif (len(production) == 0):
+                tokenList.pop(0)
+            else:
+                printRow(stack[-1], tokenList[0].name,
+                         stack[-1] + " -> " + " ".join(production))
+                stack.pop()
+                production.reverse()
+                stack.extend(production)
+
         elif (tokenList[0].name == stack[-1]):
             printRow(stack[-1], tokenList[0].name, "Match : " + stack[-1])
             stack.pop()
             tokenList.pop(0)
         else:
-            print("Error : ", tokenList[0].name, stack[-1])
-            break
+            printRow(stack[-1], tokenList[0].name, "Not Matched")
+            stack.pop()
+    if(len(stack) == 0 or len(tokenList) == 0):
+        printRow(" ", " ", "Error")

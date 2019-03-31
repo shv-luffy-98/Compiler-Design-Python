@@ -55,6 +55,7 @@ def lexer(code):
     print(formatString("Token", 10) + "|" + formatString("Value", 8))
     print("=" * 10 + "+" + "=" * 8)
 
+    tokenList.append(Token("$", "$"))
     for i in tokenList:
         print(formatString(i.name, 10) + "|" + formatString(i.value, 8))
 

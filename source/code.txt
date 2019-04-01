@@ -1,6 +1,7 @@
 int main ()
 begin
-    int ;
+    int a, b;
 	while(i < n)
 	begin
-	end
+	end while
+end

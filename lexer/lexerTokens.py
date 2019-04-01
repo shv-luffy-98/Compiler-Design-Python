@@ -11,6 +11,7 @@ tokens = [
     Token("^[\s\t\n]\Z", "spaces", False),
 
     Token("^[\(\)\[\]\{\}]\Z", "bracket", True),
+    Token("^,\Z", "comma", True),
     Token("^(\+\+|\-\-)\Z", "unary operator", False),
     Token("^(\+|\-|\*|/|=)\Z", "operator", False),
     Token("^(<|>|<=|>=|==|!=)\Z", "relop", False),
